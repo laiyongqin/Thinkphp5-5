@@ -1,0 +1,9 @@
+{include file="public/header" /}
+    {volist name="list" id="vo"}
+    <div class="info">
+        ID：{$vo.id}
+        <br/> 昵称：{$vo.name}
+        <br/>
+    </div>
+    {/volist}
+{include file="public/footer" /}
