@@ -1,7 +1,9 @@
 # Thinkphp5
-thinkphp5网站开发，包括api数据接口<br/>
-演示地址：<a href="https://www.lifves.com" target="_blank">https://www.lifves.com/</a><br/>
-API地址：<a href="https://www.lifves.com/v1/index/index.html" target="_blank">https://www.lifves.com/v1/index/index.html</a>
+thinkphp5网站开发，包括api数据接口
+
+演示地址：[https://www.lifves.com](https://www.lifves.com/)
+
+API地址：[https://www.lifves.com/v1/index/index.html](https://www.lifves.com/v1/index/index.html)
 
 ```
 使用方法：
