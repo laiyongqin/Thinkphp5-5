@@ -2,4 +2,5 @@
 composer.lock
 *.log
 thinkphp
+/config/database.php
 /runtime/
