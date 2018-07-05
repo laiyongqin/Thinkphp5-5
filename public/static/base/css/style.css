@@ -1,0 +1,22 @@
+body {
+    font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+}
+
+h2 {
+    color: #4288ce;
+    font-weight: 400;
+    padding: 6px 0;
+    margin: 6px 0 0;
+    font-size: 28px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 底部 */
+#footer {
+    background: #444;
+    color: #cfcfcf;
+    padding: 15px 0;
+}
