@@ -54,7 +54,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'index',
+    'default_module'         => 'home',
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
@@ -64,7 +64,7 @@ return [
     // 默认验证器
     'default_validate'       => '',
     // 默认的空模块名
-    'empty_module'           => '',
+    'empty_module'           => 'empty',
     // 默认的空控制器名
     'empty_controller'       => 'Error',
     // 操作方法前缀

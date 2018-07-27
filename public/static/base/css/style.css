@@ -14,9 +14,14 @@ h2 {
     border-bottom: 1px solid #eee;
 }
 
+/* 顶部 */
+#header .header-main {
+    opacity: 0.85;
+}
+
 /* 底部 */
-#footer {
-    background: #444;
-    color: #cfcfcf;
-    padding: 15px 0;
+#footer .footer-bottom {
+    background-color: #444444;
+    padding: 15px 0 5px;
+    color: #CFCFCF;
 }

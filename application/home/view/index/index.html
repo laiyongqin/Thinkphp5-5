@@ -1,0 +1,92 @@
+{extend name="public:base" /}
+{block name="css"}
+	{css href="/static/swiper-4.3.3-dist/css/swiper.min.css" /}
+	<style>
+	/* 幻灯片 */
+	.swiper-container {
+		margin-top: 50px;
+	}
+	.swiper-container .swiper-wrapper .swiper-slide img {
+		width: 100%;
+	}
+	@media (max-width: 768px) {
+	    .swiper-container .swiper-wrapper .swiper-slide img {
+	        height: 200px;
+	    }
+	}
+	.info {
+	    padding: 20px;
+	    margin: 8px;
+	    border-bottom: 1px solid #eee;
+	}
+	</style>
+{/block}
+{block name="js"}
+	{js href="/static/swiper-4.3.3-dist/js/swiper.min.js" /}
+	<script type="text/javascript">
+		$(function() {
+			var swiper = new Swiper('.swiper-container', {
+				loop: true,
+			    autoplay: {
+			    	delay: 3000,
+			        disableOnInteraction: false,
+			    },
+			    pagination: {
+			        el: '.swiper-pagination',
+			        clickable: true,
+			    }
+			});
+		    var data_list = new Array("怎么？不喜欢？", "喜欢就喜欢吧，没人笑你", "快承认了吧", "哼，那我消失了", "不喜欢，我真消失了", "消失，看你承不承认，哼"),
+		        i = 0;
+		    $('.btn-info').on('click', function() {
+		        alert(data_list[i]);
+		        if (i >= 5) {
+		            $(this).parent().hide();
+		        } else {
+		            i++;
+		        }
+		    });
+		    $('.btn-success').on('click', function() {
+		        alert("哈哈哈！这才乖，我也喜欢你。");
+		    });
+		});
+	</script>
+{/block}
+{block name="main"}
+	<div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/static/images/1.jpg"></div>
+            <div class="swiper-slide"><img src="/static/images/2.jpg"></div>
+            <div class="swiper-slide"><img src="/static/images/3.jpg"></div>
+            <div class="swiper-slide"><img src="/static/images/4.jpg"></div>
+        </div>
+        <!-- Add Pagination -->
+    	<div class="swiper-pagination"></div>
+    </div>
+	<div id="main">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <h3 class="panel-title">你喜欢我吗？</h3>
+	        </div>
+	        <div class="panel-body">
+	            <div class="row">
+	                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+	                    <div class="btn-group" role="group">
+	                        <button type="button" class="btn btn-default btn-success">喜欢</button>
+	                    </div>
+	                    <div class="btn-group" role="group">
+	                        <button type="button" class="btn btn-default btn-info">不喜欢</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    {volist name="list" id="vo"}
+	    <div class="info">
+	        ID：{$vo.id}
+	        <br/> 昵称：{$vo.name}
+	        <br/>
+	    </div>
+	    {/volist}
+	</div>
+{/block}
