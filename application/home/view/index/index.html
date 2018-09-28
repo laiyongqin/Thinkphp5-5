@@ -14,6 +14,23 @@
 	        height: 200px;
 	    }
 	}
+	#main .bg {
+		width: 100%;
+		position: absolute;
+	}
+	#main .btn1 {
+		width: 66%;
+		vertical-align: bottom;
+	}
+	#main .btn2 {
+		width: 34%;
+		vertical-align: bottom;
+	}
+	#main .button {
+		width: 100%;
+		position: absolute;
+		margin-top: 124%;
+	}
 	.info {
 	    padding: 20px;
 	    margin: 8px;
@@ -36,18 +53,18 @@
 			        clickable: true,
 			    }
 			});*/
-		    var data_list = new Array("房产证上写你名", "保大", "我做家务", "我做饭", "宠你", "护犊子", "不凶人"),
+		    var data_list = new Array("工资上交", "房产证上写你名", "保大", "我做家务", "我做饭", "宠你", "护犊子", "不凶人"),
 		        i = 0;
-		    $('.btn-info').on('click', function() {
+		    $('.btn2').on('click', function() {
 		        alert(data_list[i]);
-		        if (i >= 6) {
+		        if (i >= 7) {
 		            //$(this).parent().hide();
-		            i = parseInt(Math.random() * 7);
+		            i = parseInt(Math.random() * 8);
 		        } else {
 		            i++;
 		        }
 		    });
-		    $('.btn-success').on('click', function() {
+		    $('.btn1').on('click', function() {
 		        alert("目标已拿下");
 		    });
 		});
@@ -67,7 +84,16 @@
     	<!-- <div class="swiper-pagination"></div>
     </div> -->
 	<div id="main">
-	    <div class="panel panel-warning">
+		<div>
+			<!-- <img src="/static/images/背景图.png" class="bg"/> -->
+			<div class="button">
+				<div class="col-xs-12 col-sm-12 text-center btn">
+					<img src="/static/images/按钮1.png" class="btn1" />
+					<img src="/static/images/按钮2.png" class="btn2"/>
+				</div>
+			</div>
+		</div>
+	    <!-- <div class="panel panel-warning">
 	        <div class="panel-heading">
 	            <h3 class="panel-title">小姐姐，我观察你很久了</h3>
 	        </div>
@@ -84,7 +110,7 @@
 	                </div>
 	            </div>
 	        </div>
-	    </div>
+	    </div> -->
 	    <!-- {volist name="list" id="vo"}
 	    <div class="info">
 	        ID：{$vo.id}
