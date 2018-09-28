@@ -14,7 +14,7 @@ class Index extends Controller
             ->where('id', 1)
             ->find();
         $this->assign('list', $list);
-        $this->assign('meta_title', '首页');
+        $this->assign('meta_title', '小姐姐小姐姐');
         return $this->fetch();
     }
 
