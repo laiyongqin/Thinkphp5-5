@@ -1,0 +1,71 @@
+{extend name="public:base" /}
+{block name="css"}
+	<style>
+	#main .bg {
+		width: 100%;
+		position: absolute;
+	}
+	#main .btns {
+		padding: 6px 12px;
+    	white-space: nowrap;
+    	cursor: pointer;
+	}
+	#main .btn1 {
+		width: 66%;
+		vertical-align: bottom;
+		cursor: pointer;
+	}
+	#main .btn2 {
+		width: 34%;
+		vertical-align: bottom;
+		cursor: pointer;
+	}
+	#main .button {
+		width: 100%;
+		position: absolute;
+		margin-top: 124%;
+	}
+	.info {
+	    padding: 20px;
+	    margin: 8px;
+	    border-bottom: 1px solid #eee;
+	}
+	</style>
+{/block}
+{block name="js"}
+	<script type="text/javascript">
+		$(function() {
+		    var data_list = new Array("工资上交", "房产证上写你名", "保大", "我做家务", "我做饭", "宠你", "护犊子", "不凶人"),
+		        i = 0;
+		    $('.btn2').on('click', function() {
+		        alert(data_list[i]);
+		        if (i >= 7) {
+		            i = parseInt(Math.random() * 8);
+		        } else {
+		            i++;
+		        }
+		    });
+		    $('.btn1').on('click', function() {
+		        alert("目标已拿下");
+		        return false;
+		    });
+		});
+	</script>
+{/block}
+{block name="header"}
+{/block}
+{block name="main"}
+	<div id="main">
+		<div>
+			<a href="javascript:void(0);"><img src="/static/images/背景图.png" class="bg"/></a>
+			<div class="button">
+				<div class="col-xs-12 col-sm-12 text-center btns">
+					<img src="/static/images/按钮1.png" class="btn1" />
+					<img src="/static/images/按钮2.png" class="btn2"/>
+				</div>
+			</div>
+		</div>
+	</div>
+{/block}
+{block name="footer"}
+{/block}
