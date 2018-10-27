@@ -168,7 +168,7 @@
 		            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
 		        });
 		        map.addControl(geolocation);
-		        geolocation.getCurrentPosition(function(status,result){
+		        geolocation.getCityInfo(function(status,result){
 		            if(status=='complete'){
 		                onComplete(result)
 		            }else{
