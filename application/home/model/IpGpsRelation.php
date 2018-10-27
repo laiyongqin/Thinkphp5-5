@@ -28,7 +28,7 @@ class IpGpsRelation extends Model
     public static function addInfo($data = array())
     {
         $num = self::where(['ip' => $data['ip']])->count();
-        if ($num === 3) {
+        if ($num >= 3) {
             // 查询出最老的数据id
             $id = self::where(['ip' => $data['ip']])->limit(1)->order('update_time', 'asc')->value('id');
             // 更新
