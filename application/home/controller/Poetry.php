@@ -11,6 +11,7 @@ namespace app\home\controller;
 
 use app\home\model\AnalectsCn as AnalectsCnModel;
 use app\home\model\BookOfSongsCn as BookOfSongsCnModel;
+use app\home\model\IpGpsRelation as IpGpsRelationModel;
 use app\home\model\SongPoetryCn as SongPoetryCnModel;
 use app\home\model\TangPoetryCn as TangPoetryCnModel;
 use think\Controller;
@@ -91,10 +92,12 @@ class Poetry extends Controller
                         $data['status']   = 1;
                         $data['province'] = $weather['lives']['0']['province'];
                         $data['city']     = $weather['lives']['0']['city'];
+                        $data['weather']  = $weather['lives']['0']['weather'];
                         if ($type == 'gps') {
                             $data['district'] = $weather['lives']['0']['district'];
+                            //存储访问者的IP、GPS、位置以及天气信息
+                            IpGpsRelationModel::addInfo(['ip' => Request::instance()->ip(), 'gps' => $dataInfo, 'location' => $data['province'] . $data['city'] . $data['district'], 'weather' => $data['weather']]);
                         }
-                        $data['weather'] = $weather['lives']['0']['weather'];
                     } else {
                         $data['status'] = 0;
                     }
