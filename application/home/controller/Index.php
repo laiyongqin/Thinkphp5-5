@@ -15,7 +15,7 @@ class Index extends Controller
             ->find();
         $this->assign('list', $list);
         $this->assign('meta_title', '小姐姐小姐姐');
-        return $this->fetch('Tricks/index');
+        return $this->fetch('tricks/index');
     }
 
     public function hello($name = 'World')
