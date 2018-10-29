@@ -272,8 +272,8 @@
 		  	        map.addControl(geolocation);
 		  	        if(type == 'getCurrentPosition') {
 		  	        	geolocation.getCurrentPosition(function(status,result) {
-		  	        		alert(status);
-		  	        		laert(JSON.stringify(result));return;
+		  	        		alert(status+'1');
+		  	        		laert(JSON.stringify(result));
 		  	        	    if(status=='complete') {
 		  	        	        onComplete(type, result);
 		  	        	    }else{
@@ -282,8 +282,8 @@
 		  	        	});
 		  	        }else if(type == 'getCityInfo') {
 		  	        	geolocation.getCityInfo(function(status,result) {
-		  	        		alert(status);
-		  	        		laert(JSON.stringify(result));return;
+		  	        		alert(status+'2');
+		  	        		laert(JSON.stringify(result));
 		  	        	    if(status=='complete') {
 		  	        	        onComplete(type, result);
 		  	        	    }else{
