@@ -85,9 +85,9 @@
     </div>
 	<div id="main">
 		<div class="panel panel-default">
-			<div class="page-header">
-			  	当前位置：<span class="area">江苏南京市</span>
-			  	天气：<span class="weather">阴转晴</span>
+			<div class="page-header hidden">
+			  	当前位置：<span class="area"></span>
+			  	天气：<span class="weather"></span>
 			</div>
 			<div class="panel-heading">
 				<form class="form" method="get" action="{:url('')}">
@@ -173,14 +173,6 @@
 {block name="footer-js"}
 	<script type="text/javascript">
 		$(function() {
-			var xmlHttpRequest;
-			if(window.XMLHttpRequest) {
-				xmlHttpRequest = new XMLHttpRequest();
-			}else{
-				xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlHttpRequest.open("GET","AjaxServlet",true);
-
 			var swiper = new Swiper('.swiper-container', {
 				loop: true,
 			    autoplay: {
@@ -256,6 +248,7 @@
 	                				if(data.status)	{
 	                					$("#main .panel .page-header .area").text(data.province + data.city);
 	                					$("#main .panel .page-header .weather").text(data.weather);
+	                					$("#main .panel .page-header").removeClass("hidden");
 	                				}
 	                			}
 			                });
@@ -320,6 +313,7 @@
     				if(data.status)	{
     					$("#main .panel .page-header .area").text(data.province + data.city + data.district);
     					$("#main .panel .page-header .weather").text(data.weather);
+    					$("#main .panel .page-header").removeClass("hidden");
     				}
     			}
             });
