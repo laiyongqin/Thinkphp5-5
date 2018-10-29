@@ -206,7 +206,7 @@
 		    });
 		    setInterval("changeBackGroundColor();", 5000);
 		    // 获取定位天气信息
-			getGpsSetWeather("getCurrentPosition");
+			getGpsSetWeather("getCityInfo");
 		});
 		function changeBackGroundColor() {
 			var A = B = C = D = E = '',
@@ -272,7 +272,7 @@
 		  	        map.addControl(geolocation);
 		  	        if(type == 'getCurrentPosition') {
 		  	        	geolocation.getCurrentPosition(function(status,result) {
-		  	        	    if(status == 'complete1') {
+		  	        	    if(status == 'complete') {
 		  	        	        onComplete(type, result);
 		  	        	    }else{
 		  	        	        onError(type, result);
@@ -309,7 +309,6 @@
     			timeout: 86000000,
     			dataType: 'json',
     			success: function(data) {
-    				alert(type+data.status);
     				if(data.status)	{
     					$("#main .panel .page-header .area").text(data.province + data.city + data.district);
     					$("#main .panel .page-header .weather").text(data.weather);
