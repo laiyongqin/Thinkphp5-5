@@ -272,15 +272,18 @@
 		  	        map.addControl(geolocation);
 		  	        if(type == 'getCurrentPosition') {
 		  	        	geolocation.getCurrentPosition(function(status,result) {
-		  	        	    if(status=='complete'){
+		  	        		alert(status);
+		  	        	    if(status=='complete') {
+		  	        	    	alert(JSON.stringify(result));return;
 		  	        	        onComplete(type, result);
 		  	        	    }else{
+		  	        	    	alert(JSON.stringify(result));return;
 		  	        	        onError(type, result);
 		  	        	    }
 		  	        	});
 		  	        }else if(type == 'getCityInfo') {
 		  	        	geolocation.getCityInfo(function(status,result) {
-		  	        	    if(status=='complete'){
+		  	        	    if(status=='complete') {
 		  	        	        onComplete(type, result);
 		  	        	    }else{
 		  	        	        onError(type, result);
