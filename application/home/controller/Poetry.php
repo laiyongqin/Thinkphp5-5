@@ -25,7 +25,9 @@ class Poetry extends Controller
      */
     public function index()
     {
-    	file_put_contents('./test.txt', Request::instance()->server('HTTP_USER_AGENT').Request::instance()->isMobile());
+    	$mb = Request::instance()->isMobile() ? 1 : 0;
+    	$log = Request::instance()->server('HTTP_USER_AGENT').'手机'.$mb;
+    	file_put_contents('../runtime/test.txt', $log);
         $where = array();
         $type  = array(
             '1' => '唐诗',
