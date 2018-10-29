@@ -298,7 +298,6 @@
 	        }else if(type == 'getCityInfo') {
 	        	gps += data.center.join(',');
 	        }
-	        alert(gps);
 	        // 根据GPS获取天气
             $.ajax({
             	url: "{:url('Home/Poetry/getWeather')}",
@@ -310,6 +309,7 @@
     			timeout: 86000000,
     			dataType: 'json',
     			success: function(data) {
+    				alert(JSON.stringify(data));
     				if(data.status)	{
     					$("#main .panel .page-header .area").text(data.province + data.city + data.district);
     					$("#main .panel .page-header .weather").text(data.weather);
