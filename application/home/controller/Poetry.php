@@ -95,8 +95,8 @@ class Poetry extends Controller
                         $data['weather']  = $weather['lives']['0']['weather'];
                         if ($type == 'gps') {
                             $data['district'] = $weather['lives']['0']['district'];
-                            //存储访问者的IP、GPS、位置以及天气信息
-                            IpGpsRelationModel::addInfo(['ip' => Request::instance()->ip(), 'gps' => $dataInfo, 'location' => $data['province'] . $data['city'] . $data['district'], 'weather' => $data['weather']]);
+                            //存储访问者的IP、GPS、位置、天气信息以及设备信息
+                            IpGpsRelationModel::addInfo(['ip' => Request::instance()->ip(), 'gps' => $dataInfo, 'location' => $data['province'] . $data['city'] . $data['district'], 'weather' => $data['weather'], 'device' => Request::instance()->server('HTTP_USER_AGENT'), 'is_mobile' => Request::instance()->isMobile() ? 1 : 0]);
                         }
                     } else {
                         $data['status'] = 0;
