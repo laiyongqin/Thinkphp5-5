@@ -206,7 +206,7 @@
 		    });
 		    setInterval("changeBackGroundColor();", 5000);
 		    // 获取定位天气信息
-			getGpsSetWeather("getCityInfo");
+			getGpsSetWeather("getCurrentPosition");
 		});
 		function changeBackGroundColor() {
 			var A = B = C = D = E = '',
@@ -313,9 +313,6 @@
     					$("#main .panel .page-header .area").text(data.province + data.city + data.district);
     					$("#main .panel .page-header .weather").text(data.weather);
     				}
-    			},
-    			error: function(xhr,status,error) {
-    				alert(type+status);
     			}
             });
 	    }
