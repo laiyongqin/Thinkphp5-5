@@ -186,7 +186,7 @@
 			});
 			var type = "{$Request.get.type}";
 			if(type) {
-				$("html").animate({scrollTop:($("#main").offset().top-50)},3000);
+				$("html,body").animate({scrollTop:($("#main").offset().top-50)},3000);
 			}
 			$("#type").select2({
 		        allowClear: true,
