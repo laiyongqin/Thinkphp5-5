@@ -272,12 +272,9 @@
 		  	        map.addControl(geolocation);
 		  	        if(type == 'getCurrentPosition') {
 		  	        	geolocation.getCurrentPosition(function(status,result) {
-		  	        		alert(status);
 		  	        	    if(status=='complete') {
-		  	        	    	alert(JSON.stringify(result));return;
 		  	        	        onComplete(type, result);
 		  	        	    }else{
-		  	        	    	alert(JSON.stringify(result));return;
 		  	        	        onError(type, result);
 		  	        	    }
 		  	        	});
@@ -323,7 +320,7 @@
 	    function onError(type, data) {
 	        console.log('定位失败,原因排查信息:' + data.message);
 	        if(type == 'getCurrentPosition') {
-	        	getGpsCityWeather("getCityInfo");
+	        	getGpsSetWeather("getCityInfo");
 	        }else if(type == 'getCityInfo') {
 	        	showCityInfo();
 	        }
