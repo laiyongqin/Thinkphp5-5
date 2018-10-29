@@ -86,7 +86,6 @@ class Poetry extends Controller
             }
             if ($dataInfo) {
                 $weather = getWeather($type, $dataInfo);
-                file_put_contents('../runtime/test.txt', json_encode($weather), FILE_APPEND);
                 if ($weather) {
                     $weather = json_decode($weather, true);
                     if ($weather['status'] && $weather['info'] == 'OK') {
