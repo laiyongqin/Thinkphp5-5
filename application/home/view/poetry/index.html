@@ -70,139 +70,6 @@
 {block name="js"}
 	{js href="/static/swiper-4.3.3-dist/js/swiper.min.js" /}
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-	<!-- <script type="text/javascript" src="//webapi.amap.com/maps?v=1.4.10&key=320e1307352105df3c5a98b5da1cb8d9&plugin=AMap.CitySearch"></script> -->
-	<script type="text/javascript" src="//webapi.amap.com/maps?v=1.4.10&key=320e1307352105df3c5a98b5da1cb8d9"></script>
-	<script type="text/javascript">
-		$(function() {
-			var swiper = new Swiper('.swiper-container', {
-				loop: true,
-			    autoplay: {
-			    	delay: 3000,
-			        disableOnInteraction: false,
-			    },
-			    pagination: {
-			        el: '.swiper-pagination',
-			        clickable: true,
-			    }
-			});
-			var type = "{$Request.get.type}";
-			if(type) {
-				$("html").animate({scrollTop:($("#main").offset().top-50)},3000);
-			}
-			$("#type").select2({
-		        allowClear: true,
-		        theme: "bootstrap",
-		        placeholder: '请选择类型',
-		    });
-		    $("#type").on("select2:select",function(e) {
-		    	$(".form").submit();
-		    });
-		    $("#type").on("select2:unselect",function(e) {
-		    	$(".form").submit();
-		    });
-			$("#author").select2({
-		        allowClear: true,
-		        theme: "bootstrap",
-		        placeholder: '请选择作者',
-		    });
-		    setInterval("changeBackGroundColor();", 5000);
-			//showCityInfo();
-			getGpsSetWeather();
-		});
-		function changeBackGroundColor() {
-			var A = B = C = D = E = '',
-				color = ["#31afff","#b8a4d2","#4693d2","#98c5bf","#68b163"],
-				arr = ["right","left","bottom","top","bottom right","bottom left","top right","top left","right top","left top","right bottom","left bottom"],
-				seat = arr[Math.floor((Math.random() * arr.length))];
-			/*A = "#" + Math.round(Math.random() * 1000000);
-			B = "#" + Math.round(Math.random() * 1000000);
-			C = "#" + Math.round(Math.random() * 1000000);
-			D = "#" + Math.round(Math.random() * 1000000);
-			E = "#" + Math.round(Math.random() * 1000000);*/
-			A = color[Math.floor((Math.random() * color.length))];
-			B = color[Math.floor((Math.random() * color.length))];
-			C = color[Math.floor((Math.random() * color.length))];
-			D = color[Math.floor((Math.random() * color.length))];
-			E = color[Math.floor((Math.random() * color.length))];
-			$("#main .panel").css("background","linear-gradient(to "+ seat +", "+ A +" 0%, "+ B +" 25%, "+ C +" 50%, "+ D +" 75%, "+ E +" 100%)");
-		}
-		function showCityInfo() {
-		    //实例化城市查询类
-		    var citysearch = new AMap.CitySearch();
-		    //自动获取用户IP，返回当前城市
-		    citysearch.getLocalCity(function(status, result) {
-		        if (status === 'complete' && result.info === 'OK') {
-		            if (result && result.city) {
-		                var cityinfo = result.city;
-		                // 根据城市名称获取天气
-		                $.ajax({
-		                	url: "{:url('Home/Poetry/getWeather')}",
-		                	data: {
-		                		type: 'city',
-			                    city: cityinfo,
-			                },
-			                type: 'post',
-                			timeout: 86000000,
-                			dataType: 'json',
-                			success: function(data) {
-                				if(data.status)	{
-                					$("#main .panel .page-header .area").text(data.province + data.city);
-                					$("#main .panel .page-header .weather").text(data.weather);
-                				}
-                			}
-		                });
-		            }
-		        }
-		    });
-		}
-		function getGpsSetWeather() {
-			var map = new AMap.Map('container', {
-			        resizeEnable: true
-			    });
-		    AMap.plugin('AMap.Geolocation', function() {
-		        var geolocation = new AMap.Geolocation({
-		            enableHighAccuracy: true,//是否使用高精度定位，默认:true
-		            timeout: 10000,          //超过10秒后停止定位，默认：5s
-		            buttonPosition:'RB',    //定位按钮的停靠位置
-		            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-		            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
-		        });
-		        map.addControl(geolocation);
-		        geolocation.getCityInfo(function(status,result){
-		            if(status=='complete'){
-		                onComplete(result)
-		            }else{
-		                onError(result)
-		            }
-		        });
-		    });
-		}
-		//解析定位结果
-	    function onComplete(data) {
-	        var gps = data.center.join(',');
-	        // 根据GPS获取天气
-            $.ajax({
-            	url: "{:url('Home/Poetry/getWeather')}",
-            	data: {
-            		type: 'gps',
-                    gps: gps,
-                },
-                type: 'post',
-    			timeout: 86000000,
-    			dataType: 'json',
-    			success: function(data) {
-    				if(data.status)	{
-    					$("#main .panel .page-header .area").text(data.province + data.city + data.district);
-    					$("#main .panel .page-header .weather").text(data.weather);
-    				}
-    			}
-            });
-	    }
-	    //解析定位错误信息
-	    function onError(data) {
-	        console.log('定位失败,原因排查信息:' + data.message);
-	    }
-	</script>
 {/block}
 
 {block name="main"}
@@ -301,4 +168,143 @@
 			</div>
 		</div>
 	</div>
+{/block}
+
+{block name="footer-js"}
+	<script type="text/javascript">
+		$(function() {
+			var swiper = new Swiper('.swiper-container', {
+				loop: true,
+			    autoplay: {
+			    	delay: 3000,
+			        disableOnInteraction: false,
+			    },
+			    pagination: {
+			        el: '.swiper-pagination',
+			        clickable: true,
+			    }
+			});
+			var type = "{$Request.get.type}";
+			if(type) {
+				$("html").animate({scrollTop:($("#main").offset().top-50)},3000);
+			}
+			$("#type").select2({
+		        allowClear: true,
+		        theme: "bootstrap",
+		        placeholder: '请选择类型',
+		    });
+		    $("#type").on("select2:select",function(e) {
+		    	$(".form").submit();
+		    });
+		    $("#type").on("select2:unselect",function(e) {
+		    	$(".form").submit();
+		    });
+			$("#author").select2({
+		        allowClear: true,
+		        theme: "bootstrap",
+		        placeholder: '请选择作者',
+		    });
+		    setInterval("changeBackGroundColor();", 5000);
+			//showCityInfo();
+			getGpsSetWeather();
+		});
+		function changeBackGroundColor() {
+			var A = B = C = D = E = '',
+				color = ["#31afff","#b8a4d2","#4693d2","#98c5bf","#68b163"],
+				arr = ["right","left","bottom","top","bottom right","bottom left","top right","top left","right top","left top","right bottom","left bottom"],
+				seat = arr[Math.floor((Math.random() * arr.length))];
+			/*A = "#" + Math.round(Math.random() * 1000000);
+			B = "#" + Math.round(Math.random() * 1000000);
+			C = "#" + Math.round(Math.random() * 1000000);
+			D = "#" + Math.round(Math.random() * 1000000);
+			E = "#" + Math.round(Math.random() * 1000000);*/
+			A = color[Math.floor((Math.random() * color.length))];
+			B = color[Math.floor((Math.random() * color.length))];
+			C = color[Math.floor((Math.random() * color.length))];
+			D = color[Math.floor((Math.random() * color.length))];
+			E = color[Math.floor((Math.random() * color.length))];
+			$("#main .panel").css("background","linear-gradient(to "+ seat +", "+ A +" 0%, "+ B +" 25%, "+ C +" 50%, "+ D +" 75%, "+ E +" 100%)");
+		}
+		function showCityInfo() {
+			$.getScript("//webapi.amap.com/maps?v=1.4.10&key=320e1307352105df3c5a98b5da1cb8d9&plugin=AMap.CitySearch",function(response, status) {
+			    //实例化城市查询类
+			    var citysearch = new AMap.CitySearch();
+			    //自动获取用户IP，返回当前城市
+			    citysearch.getLocalCity(function(status, result) {
+			        if (status === 'complete' && result.info === 'OK') {
+			            if (result && result.city) {
+			                var cityinfo = result.city;
+			                // 根据城市名称获取天气
+			                $.ajax({
+			                	url: "{:url('Home/Poetry/getWeather')}",
+			                	data: {
+			                		type: 'city',
+				                    city: cityinfo,
+				                },
+				                type: 'post',
+	                			timeout: 86000000,
+	                			dataType: 'json',
+	                			success: function(data) {
+	                				if(data.status)	{
+	                					$("#main .panel .page-header .area").text(data.province + data.city);
+	                					$("#main .panel .page-header .weather").text(data.weather);
+	                				}
+	                			}
+			                });
+			            }
+			        }
+			    });
+			});
+		}
+		function getGpsSetWeather() {
+			$.getScript("//webapi.amap.com/maps?v=1.4.10&key=320e1307352105df3c5a98b5da1cb8d9",function(response, status) {
+		  		var map = new AMap.Map('container', {
+		  		        resizeEnable: true
+		  		    });
+		  	    AMap.plugin('AMap.Geolocation', function() {
+		  	        var geolocation = new AMap.Geolocation({
+		  	            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+		  	            timeout: 10000,          //超过10秒后停止定位，默认：5s
+		  	            buttonPosition: 'RB',    //定位按钮的停靠位置
+		  	            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+		  	            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+		  	        });
+		  	        map.addControl(geolocation);
+		  	        geolocation.getCityInfo(function(status,result){
+		  	            if(status=='complete'){
+		  	                onComplete(result)
+		  	            }else{
+		  	                onError(result)
+		  	            }
+		  	        });
+		  	    });
+			});
+		}
+		//解析定位结果
+	    function onComplete(data) {
+	        var gps = data.center.join(',');
+	        // 根据GPS获取天气
+            $.ajax({
+            	url: "{:url('Home/Poetry/getWeather')}",
+            	data: {
+            		type: 'gps',
+                    gps: gps,
+                },
+                type: 'post',
+    			timeout: 86000000,
+    			dataType: 'json',
+    			success: function(data) {
+    				if(data.status)	{
+    					$("#main .panel .page-header .area").text(data.province + data.city + data.district);
+    					$("#main .panel .page-header .weather").text(data.weather);
+    				}
+    			}
+            });
+	    }
+	    //解析定位错误信息
+	    function onError(data) {
+	        console.log('定位失败,原因排查信息:' + data.message);
+	        showCityInfo();
+	    }
+	</script>
 {/block}
